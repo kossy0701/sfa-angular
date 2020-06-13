@@ -1,0 +1,40 @@
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="ID">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.id}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="属性">
+    <mat-header-cell *matHeaderCellDef> 属性 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.contractStatus}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="名称">
+    <mat-header-cell *matHeaderCellDef> 名称 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="郵便番号">
+    <mat-header-cell *matHeaderCellDef> 郵便番号 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.postalCode}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="都道府県">
+    <mat-header-cell *matHeaderCellDef> 都道府県 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.prefecture}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="市町村">
+    <mat-header-cell *matHeaderCellDef> 市町村 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.city}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="住所1">
+    <mat-header-cell *matHeaderCellDef> 住所1 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.address}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="住所2">
+    <mat-header-cell *matHeaderCellDef> 住所2 </mat-header-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.address2}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div>
+  <button mat-button (click)="openDialog()">新規顧客追加</button>
+</div>
