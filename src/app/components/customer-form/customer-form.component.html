@@ -1,0 +1,34 @@
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>属性</mat-label>
+    <input matInput [(ngModel)]="data.contract_status">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>名称</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>郵便番号</mat-label>
+    <input matInput [(ngModel)]="data.postal_code">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>都道府県</mat-label>
+    <input matInput [(ngModel)]="data.prefecture_id">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>市町村</mat-label>
+    <input matInput [(ngModel)]="data.city">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>住所1</mat-label>
+    <input matInput [(ngModel)]="data.address1">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>住所2</mat-label>
+    <input matInput [(ngModel)]="data.address2">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
