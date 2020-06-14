@@ -1,11 +1,11 @@
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="customers">
   <ng-container matColumnDef="ID">
     <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
     <mat-cell *matCellDef="let customer"> {{customer.id}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="属性">
     <mat-header-cell *matHeaderCellDef> 属性 </mat-header-cell>
-    <mat-cell *matCellDef="let customer"> {{customer.contractStatus}} </mat-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.showContractStatus()}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="名称">
     <mat-header-cell *matHeaderCellDef> 名称 </mat-header-cell>
@@ -17,7 +17,7 @@
   </ng-container>
   <ng-container matColumnDef="都道府県">
     <mat-header-cell *matHeaderCellDef> 都道府県 </mat-header-cell>
-    <mat-cell *matCellDef="let customer"> {{customer.prefecture}} </mat-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.prefectureName}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="市町村">
     <mat-header-cell *matHeaderCellDef> 市町村 </mat-header-cell>
@@ -25,7 +25,7 @@
   </ng-container>
   <ng-container matColumnDef="住所1">
     <mat-header-cell *matHeaderCellDef> 住所1 </mat-header-cell>
-    <mat-cell *matCellDef="let customer"> {{customer.address}} </mat-cell>
+    <mat-cell *matCellDef="let customer"> {{customer.address1}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="住所2">
     <mat-header-cell *matHeaderCellDef> 住所2 </mat-header-cell>

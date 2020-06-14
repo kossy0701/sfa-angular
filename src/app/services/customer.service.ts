@@ -18,12 +18,37 @@ export class CustomerService {
         if (res) {
           return Object.keys(res).map((key: string) => {
             const keys = res[key];
-            // tslint:disable-next-line: max-line-length
-            return new Customer(keys.id, keys.constract_status, keys.postal_code, keys.prefecture_id, keys.city, keys.address1, keys.address2);
+            return new Customer(
+              keys.id,
+              keys.contract_status,
+              keys.name,
+              keys.postal_code,
+              keys.prefecture_name,
+              keys.city,
+              keys.address1,
+              keys.address2
+            );
           });
         } else {
           return [];
         }
+      })
+    );
+  }
+
+  createCustomer(params): Observable<Customer> {
+    return this.httpClient.post(`${environment.apiBase}/customers`, params).pipe(
+      map((res: any) => {
+        return new Customer(
+          res.id,
+          res.contract_status,
+          res.name,
+          res.postal_code,
+          res.prefecture_name,
+          res.city,
+          res.address1,
+          res.address2
+        );
       })
     );
   }

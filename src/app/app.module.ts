@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,8 +17,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CustomersComponent } from './customers/customers.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     CustomerFormComponent,
     CustomersComponent,
     ToolbarComponent,
+    CustomerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatToolbarModule,

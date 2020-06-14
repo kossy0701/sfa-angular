@@ -3,7 +3,7 @@ export class Customer {
   contractStatus: string;
   name: string;
   postalCode: string;
-  prefecture: string;
+  prefectureName: string;
   city: string;
   address1: string;
   address2: string;
@@ -13,7 +13,7 @@ export class Customer {
     contractStatus: string,
     name: string,
     postalCode: string,
-    prefecture: string,
+    prefectureName: string,
     city: string,
     address1: string,
     address2: string
@@ -22,9 +22,20 @@ export class Customer {
     this.contractStatus = contractStatus;
     this.name = name;
     this.postalCode = postalCode;
-    this.prefecture = prefecture;
+    this.prefectureName = prefectureName;
     this.city = city;
     this.address1 = address1;
     this.address2 = address2;
+  }
+
+  showContractStatus(): string {
+    switch (this.contractStatus) {
+      case 'prospect':
+        return '見込み顧客';
+      case 'existing':
+        return '既存顧客';
+      case 'dormant':
+        return '休眠顧客';
+    }
   }
 }
