@@ -14,5 +14,5 @@
     </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>
+  <div *ngIf='messageService.notificationMessage' [ngClass]='{error: messageService.error}'>{{messageService.notificationMessage}}</div>
 </mat-sidenav-container>
-

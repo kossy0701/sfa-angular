@@ -1,14 +1,23 @@
+// angular modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+// npm modules
+import { AngularTokenModule } from 'angular-token';
+
+// components
 import { AppComponent } from './app.component';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { LoginComponent } from './components/login/login.component';
 
+// angular materials
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,9 +26,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CustomersComponent } from './components/customers/customers.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { CustomerComponent } from './components/customer/customer.component';
+import { MatCardModule } from '@angular/material/card';
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,11 +37,15 @@ import { CustomerComponent } from './components/customer/customer.component';
     CustomersComponent,
     ToolbarComponent,
     CustomerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularTokenModule.forRoot({
+      apiBase: `${environment.apiBase}`
+    }),
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -42,9 +55,12 @@ import { CustomerComponent } from './components/customer/customer.component';
     MatListModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [
+    AngularTokenModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
