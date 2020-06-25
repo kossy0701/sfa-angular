@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from '../models/customer';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,9 @@ export class CustomerService {
         } else {
           return [];
         }
+      }),
+      catchError((err) => {
+        return throwError(err);
       })
     );
   }
@@ -49,6 +52,29 @@ export class CustomerService {
           res.address1,
           res.address2
         );
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+  getCustomer(id): Observable<Customer> {
+    return this.httpClient.get(`${environment.apiBase}/customers/${id}`).pipe(
+      map((res: any) => {
+        return new Customer(
+          res.id,
+          res.contract_status,
+          res.name,
+          res.postal_code,
+          res.prefecture_name,
+          res.city,
+          res.address1,
+          res.address2
+        );
+      }),
+      catchError((err) => {
+        return throwError(err);
       })
     );
   }
