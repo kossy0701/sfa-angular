@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UsersComponent } from './components/users/users.component';
 import { NotAdminGuard } from './guards/not-admin.guard';
+import { IpsComponent } from './components/ips/ips.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: UsersComponent,
+    canActivate: [NotAdminGuard]
+  },
+  {
+    path: 'ips',
+    component: IpsComponent,
     canActivate: [NotAdminGuard]
   }
 ];

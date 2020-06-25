@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from './services/message.service';
 import { AuthService } from './services/auth.service';
-
 import { UserService } from './services/user.service';
 
 @Component({
@@ -18,4 +17,3 @@ export class AppComponent {
     });
   }
 }
-

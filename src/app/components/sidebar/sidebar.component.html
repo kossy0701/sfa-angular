@@ -1,0 +1,17 @@
+<mat-nav-list>
+  <mat-list-item>
+    トップ
+  </mat-list-item>
+  <mat-list-item routerLink="/customers" *ngIf='authService.signInUserId'>
+    顧客一覧
+  </mat-list-item>
+  <mat-list-item routerLink="/users/{{authService.signInUserId}}">
+    1
+  </mat-list-item>
+  <mat-list-item routerLink="/admin/users" *ngIf='authService.signInAdmin'>
+    ユーザー一覧
+  </mat-list-item>
+  <mat-list-item routerLink="/ips" *ngIf='authService.signInAdmin'>
+    IPアドレス制限
+  </mat-list-item>
+</mat-nav-list>

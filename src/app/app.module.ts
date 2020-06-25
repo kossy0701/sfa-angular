@@ -32,6 +32,8 @@ import { environment } from 'src/environments/environment';
 import { UsersComponent } from './components/users/users.component';
 import { IpsComponent } from './components/ips/ips.component';
 import { IpFormComponent } from './components/ip-form/ip-form.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { IpFormComponent } from './components/ip-form/ip-form.component';
     UsersComponent,
     IpsComponent,
     IpFormComponent,
+    SidebarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
