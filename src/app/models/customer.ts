@@ -6,7 +6,7 @@ export class Customer {
   prefectureName: string;
   city: string;
   address1: string;
-  address2: string;
+  address2?: string;
 
   constructor(
     id: number,
@@ -16,7 +16,7 @@ export class Customer {
     prefectureName: string,
     city: string,
     address1: string,
-    address2: string
+    address2?: string
   ) {
     this.id = id;
     this.contractStatus = contractStatus;
