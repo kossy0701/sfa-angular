@@ -1,21 +1,11 @@
 <app-toolbar></app-toolbar>
-<mat-sidenav-container>
-  <mat-sidenav mode="side" opened="true" class="mat-elevation-z20">
-    <mat-nav-list>
-      <mat-list-item>
-        トップ
-      </mat-list-item>
-      <mat-list-item routerLink="/customers" *ngIf='authService.signInUserId'>
-        顧客一覧
-      </mat-list-item>
-      <mat-list-item routerLink="/users/{{authService.signInUserId}}">
-        {{testId}}
-      </mat-list-item>
-      <mat-list-item routerLink="/admin/users">
-        admin
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <router-outlet></router-outlet>
-  <div *ngIf='messageService.notificationMessage' [ngClass]='{error: messageService.error}'>{{messageService.notificationMessage}}</div>
-</mat-sidenav-container>
+<mat-drawer-container>
+  <mat-drawer mode="side" opened="true">
+      <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+    <div *ngIf='messageService.notificationMessage' [ngClass]='{error: messageService.error}'>{{messageService.notificationMessage}}</div>
+  </mat-drawer-content>
+</mat-drawer-container>
+<app-footer></app-footer>

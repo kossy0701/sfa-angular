@@ -12,6 +12,7 @@ import { MessageService } from './message.service';
 export class AuthService {
   signInUserId: number;
   signInUserName: string;
+  signInAdmin: boolean;
 
   constructor(private angularTokenService: AngularTokenService, private httpClient: HttpClient, private messageService: MessageService) {
     this.validateToken().subscribe(
@@ -19,7 +20,9 @@ export class AuthService {
         if (res.success) {
           this.signInUserId = res.data.id;
           this.signInUserName = res.data.name;
+          this.signInAdmin = res.data.administrator;
           return true;
+
         } else {
           return false;
         }
@@ -50,6 +53,7 @@ export class AuthService {
         localStorage.setItem('uid', res.headers.get('uid'));
         this.signInUserId = res.body.data.id;
         this.signInUserName = res.body.data.name;
+        this.signInAdmin = res.body.data.administrator;
         return res;
       }),
       catchError(err => {
@@ -68,6 +72,7 @@ export class AuthService {
         localStorage.removeItem('uid');
         this.signInUserId = null;
         this.signInUserName = null;
+        this.signInAdmin = null;
         return res;
       }),
       catchError(err => {
