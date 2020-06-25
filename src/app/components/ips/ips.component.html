@@ -1,0 +1,12 @@
+<mat-table [dataSource]='ips'>
+  <ng-container matColumnDef='IPアドレス'>
+    <mat-header-cell *matHeaderCellDef> IPアドレス </mat-header-cell>
+    <mat-cell *matCellDef='let ip'> {{ ip.content }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='設定日'>
+    <mat-header-cell *matHeaderCellDef> 設定日 </mat-header-cell>
+    <mat-cell *matCellDef='let ip'> {{ ip.settedAt }} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+  <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
+</mat-table>
