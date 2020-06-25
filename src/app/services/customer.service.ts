@@ -78,4 +78,21 @@ export class CustomerService {
       })
     );
   }
+
+  getCustomer(id): Observable<Customer> {
+    return this.httpClient.get(`${environment.apiBase}/customers/${id}`).pipe(
+      map((res: any) => {
+        return new Customer(
+          res.id,
+          res.contract_status,
+          res.name,
+          res.postal_code,
+          res.prefecture_name,
+          res.city,
+          res.address1,
+          res.address2
+        );
+      })
+    );
+  }
 }
