@@ -32,7 +32,7 @@ export class AuthService {
 
   validateToken(): Observable<any> {
     return this.httpClient.get(`${environment.apiBase}/auth/validate_token`).pipe(
-      map((res: any) => {
+      map((res) => {
         return res;
       }),
       catchError(err => {

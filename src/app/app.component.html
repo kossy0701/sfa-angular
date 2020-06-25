@@ -5,11 +5,14 @@
       <mat-list-item>
         トップ
       </mat-list-item>
-      <mat-list-item routerLink="/customers">
+      <mat-list-item routerLink="/customers" *ngIf='authService.signInUserId'>
         顧客一覧
       </mat-list-item>
-      <mat-list-item>
-        業務日報
+      <mat-list-item routerLink="/users/{{authService.signInUserId}}">
+        {{testId}}
+      </mat-list-item>
+      <mat-list-item routerLink="/admin/users">
+        admin
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

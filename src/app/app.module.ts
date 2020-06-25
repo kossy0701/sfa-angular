@@ -29,6 +29,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 
 import { environment } from 'src/environments/environment';
+import { UsersComponent } from './components/users/users.component';
+import { IpsComponent } from './components/ips/ips.component';
+import { IpFormComponent } from './components/ip-form/ip-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { environment } from 'src/environments/environment';
     ToolbarComponent,
     CustomerComponent,
     LoginComponent,
+    UsersComponent,
+    IpsComponent,
+    IpFormComponent,
   ],
   imports: [
     BrowserModule,
