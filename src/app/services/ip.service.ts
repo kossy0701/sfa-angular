@@ -13,14 +13,15 @@ export class IpService {
   constructor(private httpClient: HttpClient) { }
 
   getIps(): Observable<Ip[]> {
-    return this.httpClient.get(`${environment.apiBase}/admin/users`).pipe(
+    return this.httpClient.get(`${environment.apiBase}/ips`).pipe(
       map((res: Ip[]) => {
         if (res) {
           return Object.keys(res).map((key: string) => {
             const keys = res[key];
             return new Ip(
               keys.id,
-              keys.content
+              keys.content,
+              keys.setted_at
             );
           });
         } else {
