@@ -21,7 +21,8 @@ export class MessageService {
 
   message(code= null): string {
     return {
-      Unauthorized: 'メールアドレス、パスワードのいずれかが間違っています。'
+      Unauthorized: 'メールアドレス、パスワードのいずれかが間違っています。',
+      Forbidden: 'アクセス権限がありません'
     }[code];
   }
 

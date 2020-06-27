@@ -5,7 +5,6 @@
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
-    <div *ngIf='messageService.notificationMessage' [ngClass]='{error: messageService.error}'>{{messageService.notificationMessage}}</div>
   </mat-drawer-content>
 </mat-drawer-container>
 <app-footer></app-footer>

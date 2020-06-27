@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleSignIn() {
+  handleSignIn(): void {
     this.authService.onSignIn(this.signInData).subscribe(res => {
       if (res.status === 200) {
         this.signInData.login = null;
