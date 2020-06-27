@@ -1,13 +1,24 @@
-<form id='login-form' *ngIf='!authService.signInUserId'>
-  <div>
-    <label for='email'>Email</label>
-    <input id='email' name='email' type="text" placeholder="メールアドレス" [(ngModel)]='signInData.login' />
-  </div>
-  <div>
-    <label for='password'>Password</label>
-    <input id='password' name='password' type="password" placeholder="パスワード" [(ngModel)]='signInData.password' />
-  </div>
-  <div>
-    <input type="submit" value='ログイン' (click)='handleSignIn()'>
-  </div>
-</form>
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form id='login-form' *ngIf='!authService.signInUserId'>
+      <p>
+        <mat-form-field>
+          <input matInput id='email' name='email' type='text' placeholder='メールアドレス' [(ngModel)]='signInData.login' required #login='ngModel'>
+          <mat-error *ngIf='login.errors?.required'>メールアドレスを入力してください。</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput id='password' name='password' type='password' placeholder='パスワード' [(ngModel)]='signInData.password' required #password='ngModel'>
+          <mat-error *ngIf='password.errors?.required'>パスワードを入力してください。</mat-error>
+        </mat-form-field>
+      </p>
+      <div class='button'>
+        <button type='submit' mat-button (click)='handleSignIn()'>ログイン</button>
+      </div>
+      <mat-error *ngIf='messageService.notificationMessage'>{{messageService.notificationMessage}}</mat-error>
+    </form>
+  </mat-card-content>
+</mat-card>
+
