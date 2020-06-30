@@ -78,4 +78,15 @@ export class CustomerService {
       })
     );
   }
+
+  getCustomersCSV(): Observable<Blob> {
+    return this.httpClient.get(`${environment.apiBase}/customers/download`, {responseType: 'text'}).pipe(
+      map((res: any) => {
+        return new Blob([res], {type: 'text/csv'});
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
 }
