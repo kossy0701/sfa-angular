@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Customer } from '../../models/customer';
@@ -14,8 +14,13 @@ export class CustomersComponent implements OnInit {
   customers: Customer[];
   displayedColumns = ['ID', '属性', '名称', '郵便番号', '都道府県', '市町村', '住所1', '住所2'];
   newCustomer: Customer;
+  @ViewChild('downloadLink') downloadLink;
 
-  constructor(public dialog: MatDialog, private customerService: CustomerService, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.customerService.getCustomers().subscribe(data => {
@@ -30,9 +35,18 @@ export class CustomersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.customerService.createCustomer(result).subscribe(data => {
-        this.router.navigate(['/customers', data.id]);
-      });
+      if (result) {
+        this.customerService.createCustomer(result).subscribe(data => {
+          this.router.navigate(['/customers', data.id]);
+        });
+      }
+    });
+  }
+
+  downloadCSV(): void {
+    this.customerService.getCustomersCSV().subscribe(blob => {
+      this.downloadLink.nativeElement.href = window.URL.createObjectURL(blob);
+      this.downloadLink.nativeElement.click();
     });
   }
 }

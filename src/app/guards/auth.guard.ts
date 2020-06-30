@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.validateToken().pipe(
       map((res: any) => {
-        debugger
         return true;
       }),
       catchError(err => {
