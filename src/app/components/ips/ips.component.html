@@ -7,6 +7,24 @@
     <mat-header-cell *matHeaderCellDef> 設定日 </mat-header-cell>
     <mat-cell *matCellDef='let ip'> {{ ip.settedAt }} </mat-cell>
   </ng-container>
+  <ng-container matColumnDef='更新'>
+    <mat-header-cell *matHeaderCellDef> 更新 </mat-header-cell>
+    <mat-cell *matCellDef="let ip" >
+      <button mat-button (click)='updateDialog(ip)'><mat-icon>build</mat-icon></button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='削除'>
+    <mat-header-cell *matHeaderCellDef> 削除 </mat-header-cell>
+    <mat-cell *matCellDef="let ip" >
+      <button mat-button (click)='handleDelete(ip)'><mat-icon>remove</mat-icon></button>
+    </mat-cell>
+  </ng-container>
   <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
   <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
 </mat-table>
+
+<div class='add-button'>
+  <button mat-fab color='primary' (click)='openDialog()' matTooltip="IPアドレス制限を追加する">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

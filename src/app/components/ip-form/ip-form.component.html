@@ -1,1 +1,13 @@
-<p>ip-form works!</p>
+<div mat-dialog-content>
+  <h2 mat-dialog-title>IPアドレス制限設定</h2>
+  <mat-form-field>
+    <mat-label>IPアドレス</mat-label>
+    <input matInput [(ngModel)]="data.content" required #content='ngModel' pattern="{{networkAddressPattern}}">
+    <mat-error *ngIf='content.errors?.required'>IPアドレスを入力してください。</mat-error>
+    <mat-error *ngIf='content.errors?.pattern'>正しいIPアドレスのフォーマットではありません。</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color='warn' (click)="onNoClick()">キャンセル</button>
+  <button mat-button color='primary' [mat-dialog-close]="data" cdkFocusInitial>{{data.content ? '更新する' : '追加する'}}</button>
+</div>
