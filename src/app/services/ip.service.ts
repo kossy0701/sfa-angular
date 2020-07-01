@@ -33,4 +33,45 @@ export class IpService {
       })
     );
   }
+
+  createIp(params): Observable<Ip> {
+    return this.httpClient.post(`${environment.apiBase}/ips`, params).pipe(
+      map((res: any) => {
+        return new Ip(
+          res.id,
+          res.content,
+          res.setted_at,
+        );
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+  updateIp(params): Observable<Ip> {
+    return this.httpClient.put(`${environment.apiBase}/ips/${params.id}`, params).pipe(
+      map((res: any) => {
+        return new Ip(
+          res.id,
+          res.content,
+          res.setted_at,
+        );
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+  deleteIp(params): Observable<null> {
+    return this.httpClient.delete(`${environment.apiBase}/ips/${params.id}`, params).pipe(
+      map(() => {
+        return null;
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
 }
