@@ -14,7 +14,8 @@ export class CustomersComponent implements OnInit {
   customers: Customer[];
   displayedColumns = ['ID', '属性', '名称', '郵便番号', '都道府県', '市町村', '住所1', '住所2'];
   newCustomer: Customer;
-  @ViewChild('downloadLink') downloadLink;
+  @ViewChild('downloadCsvLink') downloadCsvLink;
+  @ViewChild('downloadZipLink') downloadZipLink;
 
   constructor(
     public dialog: MatDialog,
@@ -45,8 +46,15 @@ export class CustomersComponent implements OnInit {
 
   downloadCSV(): void {
     this.customerService.getCustomersCSV().subscribe(blob => {
-      this.downloadLink.nativeElement.href = window.URL.createObjectURL(blob);
-      this.downloadLink.nativeElement.click();
+      this.downloadCsvLink.nativeElement.href = window.URL.createObjectURL(blob);
+      this.downloadCsvLink.nativeElement.click();
+    });
+  }
+
+  downloadZip(): void {
+    this.customerService.getCustomersZip().subscribe(blob => {
+      this.downloadZipLink.nativeElement.href = window.URL.createObjectURL(blob);
+      this.downloadZipLink.nativeElement.click();
     });
   }
 }

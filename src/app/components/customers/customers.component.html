@@ -41,7 +41,12 @@
   </button>
 </div>
 
-<div class='download-button'>
-  <a><button mat-fab color='primary' (click)='downloadCSV()'>ダウンロード</button></a>
-  <a download='顧客一覧.csv' #downloadLink><mat-icon>download</mat-icon></a>
+<div class='download-csv'>
+  <a><button mat-fab color='primary' (click)='downloadCSV()'>CSV</button></a>
+  <a download='顧客一覧.csv' #downloadCsvLink><mat-icon>download</mat-icon></a>
+</div>
+
+<div class='download-zip'>
+  <a><button mat-fab color='primary' (click)='downloadZip()'>Zip</button></a>
+  <a download='顧客一覧.zip' #downloadZipLink><mat-icon>download</mat-icon></a>
 </div>
