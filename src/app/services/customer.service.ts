@@ -89,4 +89,18 @@ export class CustomerService {
       })
     );
   }
+
+  getCustomersZip(): Observable<Blob> {
+    return this.httpClient.get(`${environment.apiBase}/customers/download_zip`, {
+      responseType: 'blob',
+      headers: { Accept: 'application/zip' }
+    }).pipe(
+      map((res: any) => {
+        return new Blob([res], {type: 'application/zip'});
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
 }
