@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span>{{ title }}</span>
     <span class='spacer'></span>
-    <mat-icon class='icon' aria-hidden='false' aria-label='heart' routerLink='/login' *ngIf='!authService.signInUserId'>login</mat-icon>
-    <button mat-icon-button (click)='handleSignOut()' *ngIf='authService.signInUserId'><mat-icon class='icon' aria-hidden='false' aria-label='heart'>logout</mat-icon></button>
+    <a class='login-link' routerLink='/login' *ngIf='!authService.signInUserId'>ログイン</a>
+    <a class='logout-link' (click)='handleSignOut()' *ngIf='authService.signInUserId'>ログアウト</a>
   </mat-toolbar-row>
 </mat-toolbar>
