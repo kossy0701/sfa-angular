@@ -1,6 +1,8 @@
+type ContractStatus = 'prospect' | 'existing' | 'dormant' | null;
+
 export class Customer {
   id: number;
-  contractStatus: string;
+  contractStatus: ContractStatus;
   name: string;
   postalCode: string;
   prefectureName: string;
@@ -10,7 +12,7 @@ export class Customer {
 
   constructor(
     id: number,
-    contractStatus: string,
+    contractStatus: ContractStatus,
     name: string,
     postalCode: string,
     prefectureName: string,
@@ -38,4 +40,14 @@ export class Customer {
         return '休眠顧客';
     }
   }
+}
+
+export interface CustomerForRequest {
+  contract_status: ContractStatus;
+  name: string;
+  postal_code: string;
+  prefecture_id: number;
+  city: string;
+  address1: string;
+  address2?: string;
 }
