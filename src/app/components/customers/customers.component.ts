@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit {
+  loading = false;
   customers: Customer[];
   customerForRequest: CustomerForRequest = {
     contract_status: null,
@@ -53,16 +54,24 @@ export class CustomersComponent implements OnInit {
   }
 
   downloadCSV(): void {
+    this.loading = true;
     this.customerService.getCustomersCSV().subscribe(blob => {
       this.downloadCsvLink.nativeElement.href = window.URL.createObjectURL(blob);
       this.downloadCsvLink.nativeElement.click();
+      this.loading = false;
     });
   }
 
   downloadZip(): void {
+    this.loading = true;
     this.customerService.getCustomersZip().subscribe(blob => {
       this.downloadZipLink.nativeElement.href = window.URL.createObjectURL(blob);
       this.downloadZipLink.nativeElement.click();
+      this.loading = false;
     });
+  }
+
+  isLoading(): string {
+    return this.loading ? 'clearness' : '';
   }
 }
