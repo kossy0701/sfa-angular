@@ -1,5 +1,5 @@
 <div [class]='isLoading()'>
-  <button class='button' mat-raised-button color='primary' (click)='openDialog()'>顧客を追加する</button>
+  <button class='button' [disabled]='loading' mat-raised-button color='primary' (click)='openDialog()'>顧客を追加する</button>
   <a>
     <button class='button' [disabled]='loading' mat-raised-button color='primary' (click)='downloadCSV()'>
       CSVダウンロード
