@@ -1,52 +1,48 @@
-<mat-table [dataSource]='customers'>
-  <ng-container matColumnDef='ID'>
-    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.id}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='属性'>
-    <mat-header-cell *matHeaderCellDef> 属性 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.showContractStatus()}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='名称'>
-    <mat-header-cell *matHeaderCellDef> 名称 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.name}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='郵便番号'>
-    <mat-header-cell *matHeaderCellDef> 郵便番号 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.postalCode}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='都道府県'>
-    <mat-header-cell *matHeaderCellDef> 都道府県 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.prefectureName}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='市町村'>
-    <mat-header-cell *matHeaderCellDef> 市町村 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.city}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='住所1'>
-    <mat-header-cell *matHeaderCellDef> 住所1 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.address1}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef='住所2'>
-    <mat-header-cell *matHeaderCellDef> 住所2 </mat-header-cell>
-    <mat-cell *matCellDef='let customer'> {{customer.address2}} </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
-  <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
-</mat-table>
+<div [class]='isLoading()'>
+  <button class='button' [disabled]='loading' mat-raised-button color='primary' (click)='openDialog()'>顧客を追加する</button>
+  <a>
+    <button class='button' [disabled]='loading' mat-raised-button color='primary' (click)='downloadCSV()'>
+      CSVダウンロード
+    </button>
+  </a>
+  <a download='顧客一覧.csv' #downloadCsvLink></a>
+  <a><button class='button' [disabled]='loading' mat-raised-button color='primary' (click)='downloadZip()'>Zipダウンロード</button></a>
+  <a download='顧客一覧.zip' #downloadZipLink></a>
 
-<div class='add-button'>
-  <button mat-fab color='primary' (click)='openDialog()'>
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
-
-<div class='download-csv'>
-  <a><button mat-fab color='primary' (click)='downloadCSV()'>CSV</button></a>
-  <a download='顧客一覧.csv' #downloadCsvLink><mat-icon>download</mat-icon></a>
-</div>
-
-<div class='download-zip'>
-  <a><button mat-fab color='primary' (click)='downloadZip()'>Zip</button></a>
-  <a download='顧客一覧.zip' #downloadZipLink><mat-icon>download</mat-icon></a>
+  <mat-table [dataSource]='customers'>
+    <ng-container matColumnDef='ID'>
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='属性'>
+      <mat-header-cell *matHeaderCellDef> 属性 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.showContractStatus()}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='名称'>
+      <mat-header-cell *matHeaderCellDef> 名称 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='郵便番号'>
+      <mat-header-cell *matHeaderCellDef> 郵便番号 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.postalCode}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='都道府県'>
+      <mat-header-cell *matHeaderCellDef> 都道府県 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.prefectureName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='市町村'>
+      <mat-header-cell *matHeaderCellDef> 市町村 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.city}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='住所1'>
+      <mat-header-cell *matHeaderCellDef> 住所1 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.address1}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef='住所2'>
+      <mat-header-cell *matHeaderCellDef> 住所2 </mat-header-cell>
+      <mat-cell *matCellDef='let customer'> {{customer.address2}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+    <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
+  </mat-table>
 </div>

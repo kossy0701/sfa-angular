@@ -1,21 +1,25 @@
 <mat-card>
-  <mat-card-title>Login</mat-card-title>
+  <mat-card-title>ログイン</mat-card-title>
   <mat-card-content>
     <form id='login-form' *ngIf='!authService.signInUserId'>
       <p>
         <mat-form-field>
-          <input matInput id='email' name='email' type='text' placeholder='メールアドレス' [(ngModel)]='signInData.login' required #login='ngModel'>
+          <input matInput id='email' name='email' type='text' placeholder='メールアドレス' [(ngModel)]='signInData.login' #login='ngModel' required email>
           <mat-error *ngIf='login.errors?.required'>メールアドレスを入力してください。</mat-error>
+          <mat-error *ngIf='login.errors?.email'>メールアドレスの形式が正しくありません。</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
-          <input matInput id='password' name='password' type='password' placeholder='パスワード' [(ngModel)]='signInData.password' required #password='ngModel'>
+          <input matInput id='password' name='password' type='password' placeholder='パスワード' [(ngModel)]='signInData.password' #password='ngModel' required minlength="8">
           <mat-error *ngIf='password.errors?.required'>パスワードを入力してください。</mat-error>
+          <mat-error *ngIf='password.errors?.minlength'>パスワードは8文字以上で入力してください。</mat-error>
         </mat-form-field>
       </p>
       <div class='button'>
-        <button type='submit' mat-button (click)='handleSignIn()'>ログイン</button>
+        <button type='submit' [disabled]='login.errors || password.errors' mat-raised-button color='primary' (click)='handleSignIn()'>
+          ログイン
+        </button>
       </div>
       <mat-error *ngIf='messageService.notificationMessage'>{{messageService.notificationMessage}}</mat-error>
     </form>
