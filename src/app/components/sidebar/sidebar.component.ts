@@ -7,10 +7,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
   constructor(public authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

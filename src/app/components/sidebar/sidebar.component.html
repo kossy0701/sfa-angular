@@ -5,9 +5,6 @@
   <mat-list-item routerLink="/customers" *ngIf='authService.signInUserId'>
     顧客一覧
   </mat-list-item>
-  <mat-list-item routerLink="/users/{{authService.signInUserId}}">
-    1
-  </mat-list-item>
   <mat-list-item routerLink="/admin/users" *ngIf='authService.signInAdmin'>
     ユーザー一覧
   </mat-list-item>
