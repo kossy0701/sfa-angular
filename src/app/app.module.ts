@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 
 // angular materials
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -29,6 +30,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { environment } from 'src/environments/environment';
 import { UsersComponent } from './components/users/users.component';
@@ -60,6 +63,7 @@ import { FooterComponent } from './components/footer/footer.component';
     }),
     HttpClientModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -70,7 +74,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AngularTokenModule
