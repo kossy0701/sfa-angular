@@ -1,34 +1,44 @@
 <div mat-dialog-content>
   <mat-form-field>
     <mat-label>属性</mat-label>
-    <input matInput [(ngModel)]="data.contract_status">
+    <mat-select [(ngModel)]='data.contract_status' #contract_status='ngModel' required>
+      <mat-option [value]='' disabled='disabled' >選択してください</mat-option>
+      <mat-option [value]="'prospect'">見込み客</mat-option>
+      <mat-option [value]="'existing'">既存顧客</mat-option>
+    </mat-select>
+    <mat-error *ngIf='contract_status.errors?.required'>顧客属性を選択してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>名称</mat-label>
-    <input matInput [(ngModel)]="data.name">
+    <input matInput [(ngModel)]='data.name' #name='ngModel' required>
+    <mat-error *ngIf='name.errors?.required'>名称を入力してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>郵便番号</mat-label>
-    <input matInput [(ngModel)]="data.postal_code">
+    <input matInput [(ngModel)]='data.postal_code' #postal_code='ngModel' required>
+    <mat-error *ngIf='postal_code.errors?.required'>住所を入力してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>都道府県</mat-label>
-    <input matInput [(ngModel)]="data.prefecture_id">
+    <input matInput [(ngModel)]='data.prefecture_id' #prefecture_id='ngModel' required>
+    <mat-error *ngIf='prefecture_id.errors?.required'>都道府県を選択してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>市町村</mat-label>
-    <input matInput [(ngModel)]="data.city">
+    <input matInput [(ngModel)]='data.city' #city='ngModel' required>
+    <mat-error *ngIf='city.errors?.required'>市町村を入力してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>住所1</mat-label>
-    <input matInput [(ngModel)]="data.address1">
+    <input matInput [(ngModel)]='data.address1' #address1='ngModel' required>
+    <mat-error *ngIf='address1.errors?.required'>住所1を入力してください。</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>住所2</mat-label>
-    <input matInput [(ngModel)]="data.address2">
+    <input matInput [(ngModel)]='data.address2'>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)='handleCancel()'>キャンセル</button>
+  <button mat-button [mat-dialog-close]='data' cdkFocusInitial>追加</button>
 </div>

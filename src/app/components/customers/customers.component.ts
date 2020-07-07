@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Customer } from '../../models/customer';
+import { Customer, CustomerForRequest } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
 import { Router } from '@angular/router';
 
@@ -12,8 +12,16 @@ import { Router } from '@angular/router';
 })
 export class CustomersComponent implements OnInit {
   customers: Customer[];
+  customerForRequest: CustomerForRequest = {
+    contract_status: null,
+    name: '',
+    postal_code: '',
+    prefecture_id: null,
+    city: '',
+    address1: '',
+    address2: ''
+  };
   displayedColumns = ['ID', '属性', '名称', '郵便番号', '都道府県', '市町村', '住所1', '住所2'];
-  newCustomer: Customer;
   @ViewChild('downloadCsvLink') downloadCsvLink;
   @ViewChild('downloadZipLink') downloadZipLink;
 
@@ -32,7 +40,7 @@ export class CustomersComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CustomerFormComponent, {
       width: '250px',
-      data: {contract_status: '', name: '', postal_code: '', prefecture_id: null, city: '', address1: '', address2: ''}
+      data: this.customerForRequest
     });
 
     dialogRef.afterClosed().subscribe(result => {
