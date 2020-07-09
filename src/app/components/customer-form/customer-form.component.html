@@ -39,6 +39,5 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)='handleCancel()'>キャンセル</button>
-  <button mat-button [mat-dialog-close]='data' cdkFocusInitial>追加</button>
+  <button mat-button color='primary' [mat-dialog-close]='data' cdkFocusInitial [disabled]='contract_status.errors || name.errors || postal_code.errors || prefecture_id.errors || city.errors || address1.errors'>決定</button>
 </div>

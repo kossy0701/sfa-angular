@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Customer } from '../models/customer';
+import { Customer, CustomerForRequest, CustomerForResponse } from '../models/customer';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -39,9 +39,9 @@ export class CustomerService {
     );
   }
 
-  createCustomer(params): Observable<Customer> {
+  createCustomer(params: CustomerForRequest): Observable<Customer> {
     return this.httpClient.post(`${environment.apiBase}/customers`, params).pipe(
-      map((res: any) => {
+      map((res: CustomerForResponse) => {
         return new Customer(
           res.id,
           res.contract_status,
@@ -61,7 +61,7 @@ export class CustomerService {
 
   getCustomer(id): Observable<Customer> {
     return this.httpClient.get(`${environment.apiBase}/customers/${id}`).pipe(
-      map((res: any) => {
+      map((res: CustomerForResponse) => {
         return new Customer(
           res.id,
           res.contract_status,
@@ -81,7 +81,7 @@ export class CustomerService {
 
   getCustomersCSV(): Observable<Blob> {
     return this.httpClient.get(`${environment.apiBase}/customers/download`, {responseType: 'text'}).pipe(
-      map((res: any) => {
+      map((res: string) => {
         return new Blob([res], {type: 'text/csv'});
       }),
       catchError((err) => {
@@ -95,7 +95,7 @@ export class CustomerService {
       responseType: 'blob',
       headers: { Accept: 'application/zip' }
     }).pipe(
-      map((res: any) => {
+      map((res: Blob) => {
         return new Blob([res], {type: 'application/zip'});
       }),
       catchError((err) => {
