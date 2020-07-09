@@ -1,3 +1,9 @@
+<div>
+  <button mat-raised-button class='add-button' color='primary' (click)='openDialog()' [disabled]='loading'>
+    IPアドレスを追加
+  </button>
+</div>
+
 <mat-table [dataSource]='ips'>
   <ng-container matColumnDef='IPアドレス'>
     <mat-header-cell *matHeaderCellDef> IPアドレス </mat-header-cell>
@@ -22,9 +28,3 @@
   <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
   <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
 </mat-table>
-
-<div class='add-button'>
-  <button mat-fab color='primary' (click)='openDialog()' matTooltip="IPアドレス制限を追加する">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
