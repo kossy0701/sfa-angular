@@ -51,3 +51,14 @@ export interface CustomerForRequest {
   address1: string;
   address2?: string;
 }
+
+export interface CustomerForResponse {
+  id: number;
+  contract_status: ContractStatus;
+  name: string;
+  postal_code: string;
+  prefecture_name: string;
+  city: string;
+  address1: string;
+  address2?: string;
+}
