@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Ip } from '../models/ip';
+import { Ip, IpForResponse } from '../models/ip';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -36,7 +36,7 @@ export class IpService {
 
   createIp(params): Observable<Ip> {
     return this.httpClient.post(`${environment.apiBase}/ips`, params).pipe(
-      map((res: any) => {
+      map((res: IpForResponse) => {
         return new Ip(
           res.id,
           res.content,
@@ -51,7 +51,7 @@ export class IpService {
 
   updateIp(params): Observable<Ip> {
     return this.httpClient.put(`${environment.apiBase}/ips/${params.id}`, params).pipe(
-      map((res: any) => {
+      map((res: IpForResponse) => {
         return new Ip(
           res.id,
           res.content,

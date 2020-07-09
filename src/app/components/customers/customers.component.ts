@@ -4,11 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Customer, CustomerForRequest } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
 import { Router } from '@angular/router';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition
-} from '@angular/material/snack-bar';
+import { SnackBarService } from '../../utils/snack-bar.service';
 
 @Component({
   selector: 'app-customers',
@@ -17,8 +13,6 @@ import {
 })
 export class CustomersComponent implements OnInit {
   loading = false;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   customers: Customer[];
   customerForRequest: CustomerForRequest = {
     contract_status: null,
@@ -37,7 +31,7 @@ export class CustomersComponent implements OnInit {
     public dialog: MatDialog,
     private customerService: CustomerService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBarService: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -66,12 +60,8 @@ export class CustomersComponent implements OnInit {
     this.customerService.getCustomersCSV().subscribe(blob => {
       this.downloadCsvLink.nativeElement.href = window.URL.createObjectURL(blob);
       this.downloadCsvLink.nativeElement.click();
+      this.snackBarService.openSnackBar('CSVダウンロードに成功しました。', 'OK');
       this.loading = false;
-      this.snackBar.open('CSVダウンロードに成功しました。', 'OK', {
-        duration: 3000,
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition
-      });
     });
   }
 
@@ -80,12 +70,8 @@ export class CustomersComponent implements OnInit {
     this.customerService.getCustomersZip().subscribe(blob => {
       this.downloadZipLink.nativeElement.href = window.URL.createObjectURL(blob);
       this.downloadZipLink.nativeElement.click();
+      this.snackBarService.openSnackBar('CSVダウンロードに失敗しました。', 'OK');
       this.loading = false;
-      this.snackBar.open('Zipファイルダウンロードに成功しました。', 'OK', {
-        duration: 3000,
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition
-      });
     });
   }
 

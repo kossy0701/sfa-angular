@@ -14,7 +14,7 @@ export class AuthService {
   signInUserName: string;
   signInAdmin: boolean;
 
-  constructor(private angularTokenService: AngularTokenService, private httpClient: HttpClient, private messageService: MessageService) {
+  constructor(public angularTokenService: AngularTokenService, private httpClient: HttpClient, private messageService: MessageService) {
     this.validateToken().subscribe(
       res => {
         if (res.success) {

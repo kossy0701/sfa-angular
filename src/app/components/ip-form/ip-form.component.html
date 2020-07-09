@@ -8,6 +8,7 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button color='warn' (click)="onNoClick()">キャンセル</button>
-  <button mat-button color='primary' [mat-dialog-close]="data" cdkFocusInitial>{{data.content ? '更新する' : '追加する'}}</button>
+  <button mat-button color='primary' [mat-dialog-close]="data" cdkFocusInitial [disabled]='content.errors'>
+    決定
+  </button>
 </div>

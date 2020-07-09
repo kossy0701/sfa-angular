@@ -9,3 +9,9 @@ export class Ip {
     this.settedAt = settedAt;
   }
 }
+
+export interface IpForResponse {
+  id: number;
+  content: string;
+  setted_at: string;
+}
