@@ -48,8 +48,12 @@ export class CustomersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.customerService.createCustomer(result).subscribe(data => {
+        this.customerForRequest = result;
+        this.customerService.createCustomer(this.customerForRequest).subscribe(data => {
           this.router.navigate(['/customers', data.id]);
+          this.snackBarService.openSnackBar('顧客の追加に成功しました。', 'OK');
+        }, err => {
+          this.snackBarService.openSnackBar('顧客の追加に失敗しました。', 'OK');
         });
       }
     });
@@ -62,6 +66,9 @@ export class CustomersComponent implements OnInit {
       this.downloadCsvLink.nativeElement.click();
       this.snackBarService.openSnackBar('CSVダウンロードに成功しました。', 'OK');
       this.loading = false;
+    }, err => {
+      this.snackBarService.openSnackBar('CSVダウンロードに失敗しました。', 'OK');
+      this.loading = false;
     });
   }
 
@@ -70,7 +77,10 @@ export class CustomersComponent implements OnInit {
     this.customerService.getCustomersZip().subscribe(blob => {
       this.downloadZipLink.nativeElement.href = window.URL.createObjectURL(blob);
       this.downloadZipLink.nativeElement.click();
-      this.snackBarService.openSnackBar('CSVダウンロードに失敗しました。', 'OK');
+      this.snackBarService.openSnackBar('Zipダウンロードに成功しました。', 'OK');
+      this.loading = false;
+    }, err => {
+      this.snackBarService.openSnackBar('Zipダウンロードに失敗しました。', 'OK');
       this.loading = false;
     });
   }
