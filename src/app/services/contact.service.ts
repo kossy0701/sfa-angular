@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Contact } from '../models/contact';
+import { Contact, ContactForResponse } from '../models/contact';
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -20,6 +20,13 @@ export class ContactService {
             const keys = res[key];
             return new Contact(
               keys.id,
+              keys.contacted_at,
+              keys.way,
+              keys.purpose,
+              keys.subject,
+              keys.content,
+              keys.target,
+              keys.createdAt
             );
           });
         } else {
@@ -28,6 +35,23 @@ export class ContactService {
       }),
       catchError((err) => {
         return throwError(err);
+      })
+    );
+  }
+
+  createContact(customerId: number, params): Observable<Contact> {
+    return this.httpClient.post(`${environment.apiBase}/customers/${customerId}/contacts`, params).pipe(
+      map((res: ContactForResponse) => {
+        return new Contact(
+          res.id,
+          res.contacted_at,
+          res.way,
+          res.purpose,
+          res.subject,
+          res.content,
+          res.target,
+          res.created_at
+        );
       })
     );
   }
