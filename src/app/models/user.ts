@@ -45,3 +45,17 @@ export class User {
     return this.administrator ? '管理者' : '一般ユーザー';
   }
 }
+
+export interface UserForResponse {
+  id: number;
+  name: string;
+  last_name: string;
+  first_name: string;
+  last_name_kana: string;
+  first_name_kana: string;
+  email: string;
+  sex: string;
+  administrator: string;
+  disable: boolean;
+  prefecture_name: string;
+}
