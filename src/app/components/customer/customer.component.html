@@ -4,3 +4,5 @@
     <mat-card-subtitle>{{customer.showContractStatus()}}</mat-card-subtitle>
   </mat-card-header>
 </mat-card>
+
+<app-contacts *ngIf='contacts' [contacts]='contacts'></app-contacts>

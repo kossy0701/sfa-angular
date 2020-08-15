@@ -1,0 +1,24 @@
+<mat-table [dataSource]='contacts'>
+  <ng-container matColumnDef='ID'>
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef='let contact'> {{contact.id}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='接触日'>
+    <mat-header-cell *matHeaderCellDef> 接触日 </mat-header-cell>
+    <mat-cell *matCellDef='let contact'> {{contact.contactedAt}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='目的'>
+    <mat-header-cell *matHeaderCellDef> 目的 </mat-header-cell>
+    <mat-cell *matCellDef='let contact'> {{contact.purpose}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='タイトル'>
+    <mat-header-cell *matHeaderCellDef> タイトル </mat-header-cell>
+    <mat-cell *matCellDef='let contact'> {{contact.subject}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef='接触者'>
+    <mat-header-cell *matHeaderCellDef> 接触者 </mat-header-cell>
+    <mat-cell *matCellDef='let contact'> {{contact.target}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+  <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
+</mat-table>

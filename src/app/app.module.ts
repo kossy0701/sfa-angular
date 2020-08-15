@@ -39,6 +39,7 @@ import { IpsComponent } from './components/ips/ips.component';
 import { IpFormComponent } from './components/ip-form/ip-form.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { FooterComponent } from './components/footer/footer.component';
     IpFormComponent,
     SidebarComponent,
     FooterComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
