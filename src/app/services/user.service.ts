@@ -30,7 +30,8 @@ export class UserService {
               keys.sex,
               keys.administrator,
               keys.disable,
-              keys.prefecture_name
+              keys.prefecture_name,
+              keys.image
             );
           });
         } else {

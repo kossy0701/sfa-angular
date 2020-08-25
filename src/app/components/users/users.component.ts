@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { SnackBarService } from '../../utils/snack-bar.service';
 import { User } from 'src/app/models/user';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-users',
@@ -10,14 +11,18 @@ import { User } from 'src/app/models/user';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  user: User;
+  dataUrl: SafeResourceUrl;
   loading = false;
   @ViewChild('fileInput') fileInput;
 
-  constructor(private userService: UserService, private snackBarService: SnackBarService) { }
+  constructor(private userService: UserService, private snackBarService: SnackBarService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
+      this.user = this.users[0];
+      this.dataUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.user.image);
     });
   }
 

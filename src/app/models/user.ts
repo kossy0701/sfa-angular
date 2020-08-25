@@ -10,6 +10,7 @@ export class User {
   administrator: string;
   disable: boolean;
   prefectureName: string;
+  image: string;
 
   constructor(
     id: number,
@@ -22,7 +23,8 @@ export class User {
     sex: string,
     administrator: string,
     disable: boolean,
-    prefectureName: string
+    prefectureName: string,
+    image?: string
   ) {
     this.id = id;
     this.name = name;
@@ -35,6 +37,7 @@ export class User {
     this.administrator = administrator;
     this.disable = disable;
     this.prefectureName = prefectureName;
+    this.image = image;
   }
 
   showSex(): string {
@@ -58,4 +61,5 @@ export interface UserForResponse {
   administrator: string;
   disable: boolean;
   prefecture_name: string;
+  image: string;
 }
