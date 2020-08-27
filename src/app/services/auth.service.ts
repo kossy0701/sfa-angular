@@ -80,4 +80,15 @@ export class AuthService {
       })
     );
   }
+
+  currentAuthHeaders(): object {
+    const authData = this.angularTokenService.currentAuthData;
+    return {
+      'access-token': authData.accessToken,
+      'client':       authData.client,
+      'expiry':       authData.expiry,
+      'token-type':   authData.tokenType,
+      'uid':          authData.uid
+    };
+  }
 }
