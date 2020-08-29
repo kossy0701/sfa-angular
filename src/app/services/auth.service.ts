@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { MessageService } from './message.service';
+import { ApiResponse } from '../models/api-response';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthService {
     );
   }
 
-  validateToken(): Observable<any> {
+  validateToken(): Observable<ApiResponse> {
     return this.httpClient.get(`${environment.apiBase}/auth/validate_token`).pipe(
       map((res) => {
         return res;
@@ -44,9 +45,9 @@ export class AuthService {
     );
   }
 
-  onSignIn(signInData): Observable<any> {
+  onSignIn(signInData): Observable<ApiResponse> {
     return this.angularTokenService.signIn(signInData).pipe(
-      map((res: any) => {
+      map((res) => {
         localStorage.setItem('accessToken', res.headers.get('access-token'));
         localStorage.setItem('cilent', res.headers.get('client'));
         localStorage.setItem('expiry', res.headers.get('expiry'));
@@ -63,7 +64,7 @@ export class AuthService {
     );
   }
 
-  onSignOut(): Observable<any> {
+  onSignOut(): Observable<ApiResponse> {
     return this.angularTokenService.signOut().pipe(
       map(res => {
         localStorage.removeItem('accessToken');
